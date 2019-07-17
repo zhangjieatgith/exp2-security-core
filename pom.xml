@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>exp2-security-core</artifactId>
+  <parent>
+  	<groupId>cn.zhang.jie</groupId>
+  	<artifactId>exp2-security</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<relativePath>../exp2-security</relativePath>
+  </parent>
+  
+    <dependencies>
+  	<!-- 引入 SpringSecurity 和 SpringOAuth 相关jar包 -->
+  	<dependency>
+  		<groupId>org.springframework.cloud</groupId>
+  		<artifactId>spring-cloud-starter-oauth2</artifactId>
+  	</dependency>
+  	<!-- 用来存放token等数据 -->
+  	<dependency>
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-starter-data-redis</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.boot</groupId>
+  		<artifactId>spring-boot-starter-jdbc</artifactId>
+  	</dependency>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+	</dependency> 
+	
+	<!-- SpringSocial相关，实现第三方登录 -->
+	<dependency>
+		<groupId>org.springframework.social</groupId>
+		<artifactId>spring-social-config</artifactId>
+	</dependency> 	
+	<dependency>
+		<groupId>org.springframework.social</groupId>
+		<artifactId>spring-social-core</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.social</groupId>
+		<artifactId>spring-social-security</artifactId>
+	</dependency>
+		<dependency>
+		<groupId>org.springframework.social</groupId>
+		<artifactId>spring-social-web</artifactId>
+	</dependency>
+	
+	<!-- Java字符串操作 -->
+	<dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+	</dependency>
+	<!--Java集合操作 -->
+	<dependency>
+		<groupId>commons-collections</groupId>
+		<artifactId>commons-collections</artifactId>
+	</dependency>
+	<!-- Java反射操作 -->
+	<dependency>
+		<groupId>commons-beanutils</groupId>
+		<artifactId>commons-beanutils</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-configuration-processor</artifactId>
+		<optional>true</optional>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-configuration-processor</artifactId>
+		<optional>true</optional>
+	</dependency>
+    </dependencies>
+</project>
