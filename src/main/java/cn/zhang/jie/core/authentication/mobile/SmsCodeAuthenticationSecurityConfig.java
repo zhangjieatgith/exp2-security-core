@@ -10,6 +10,11 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.security.SocialUserDetailsService;
+
+import cn.zhang.jie.core.social.MySocialAuthenticationProvider;
+import cn.zhang.jie.core.social.SocialConfig;
 
 @Configuration
 public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
@@ -20,6 +25,12 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
 	private AuthenticationFailureHandler imoocAuthenticationFailureHandler;
 	@Autowired
 	private UserDetailsService userDetailsService;
+	@Autowired
+	private SocialConfig socialConfig;
+	@Autowired
+	private ConnectionFactoryLocator connectionFactoryLocator;
+	@Autowired
+	private SocialUserDetailsService socialUserDetailsService;
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
@@ -33,8 +44,15 @@ public class SmsCodeAuthenticationSecurityConfig extends SecurityConfigurerAdapt
 		SmsCodeAuthenticationProvider smsCodeAuthenticationProvider = new SmsCodeAuthenticationProvider();
 		smsCodeAuthenticationProvider.setUserDetailsService(userDetailsService);
 		
+		
+		//用于QQ登录时候的 AuthenticationProvider，本应提供单独的一个配置类，暂时写在此处
+		MySocialAuthenticationProvider mySocialAuthenticationProvider = 
+			new MySocialAuthenticationProvider(socialConfig.getUsersConnectionRepository(connectionFactoryLocator), socialUserDetailsService);
+		
+		
 		//将自定义的provider加入到 AuthenticationManager 中
 		http.authenticationProvider(smsCodeAuthenticationProvider)
+			.authenticationProvider(mySocialAuthenticationProvider)
 			//将自定义的过滤器加到 UsernamePasswordAuthenticationFilter 之后
 			.addFilterAfter(smsCodeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
