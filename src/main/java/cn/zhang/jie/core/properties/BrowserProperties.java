@@ -13,6 +13,9 @@ public class BrowserProperties {
 	//配置QQ登录时的默认注册页
 	private String signUpUrl = "imooc-signUp.html";
 
+	//执行退出的url
+	private String signOutUrl;
+	
 	public String getLoginPage() {
 		return loginPage;
 	}
@@ -36,5 +39,11 @@ public class BrowserProperties {
 	}
 	public void setSignUpUrl(String signUpUrl) {
 		this.signUpUrl = signUpUrl;
+	}
+	public String getSignOutUrl() {
+		return signOutUrl;
+	}
+	public void setSignOutUrl(String signOutUrl) {
+		this.signOutUrl = signOutUrl;
 	}
 }
