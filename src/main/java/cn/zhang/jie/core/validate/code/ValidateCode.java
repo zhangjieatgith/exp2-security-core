@@ -1,10 +1,13 @@
 package cn.zhang.jie.core.validate.code;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ValidateCode {
-
+public class ValidateCode implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String code;
 	private LocalDateTime expireTime;
 	

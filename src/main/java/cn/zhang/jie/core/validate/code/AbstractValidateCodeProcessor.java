@@ -27,7 +27,9 @@ public abstract class AbstractValidateCodeProcessor<T extends ValidateCode> impl
 	}
 	
 	public void save(ServletWebRequest request,T code) {
-		sessionStrategy.setAttribute(request, SESSION_KEY_PREFIX + getGeneratorType(request).toUpperCase(), code);
+		//这里是为了不将图片保存到session中，而是仅仅将图形校验码保存到session中
+		ValidateCode validateCode = new ValidateCode(code.getCode(), code.getExpireTime());
+		sessionStrategy.setAttribute(request, SESSION_KEY_PREFIX + getGeneratorType(request).toUpperCase(), validateCode);
 	}
 	
 	@SuppressWarnings("unchecked")
